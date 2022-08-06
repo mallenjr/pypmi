@@ -1,7 +1,10 @@
 [Unit]
 Description=A small python script to control server fans via ipmi
+After=network.target
+StartLimitIntervalSec=0
 
 [Service]
+Type=simple
 WorkingDirectory=/opt/pypmi
 ExecStart=/usr/bin/python pypmi.py
 Restart=always
