@@ -8,7 +8,7 @@ import time
 env_file = '.env'
 target_temp = 40
 max_temp = 80
-fan_speeds = ['0x06', '0x08', '0x0A', '0x0C', '0x0E', '0x10', '0x12', '0x14', '0x16', '0x18', '0x1A', '0x1C', '0x1E', '0x20', '0x22', '0x24', '0x26', '0x28']
+fan_speeds = ['0x04', '0x06', '0x08', '0x0A', '0x0C', '0x0E', '0x10', '0x12', '0x14', '0x16', '0x18', '0x1A', '0x1C', '0x1E', '0x20', '0x22', '0x24', '0x26', '0x28']
 
 def import_env():
     env_vars = {}
@@ -44,12 +44,12 @@ def get_temps(base_command):
     return list(map(lambda x: int(x), temps))
 
 def get_fan_speed(temp):
-    interval = (max_temp - target_temp) / 18
+    interval = (max_temp - target_temp) / 19
     if temp <= target_temp:
         return fan_speeds[0]
 
     delta = temp - target_temp
-    speed_index = min(math.ceil(delta / interval), 16)
+    speed_index = min(math.ceil(delta / interval), 18)
     return fan_speeds[speed_index]
 
 def set_fan_speed(base_command, fan_speed):
